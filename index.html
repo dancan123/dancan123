@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tigania East Constituency Bursary Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1,
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        input,
+        select,
+        textarea {
+            margin: 7px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+        
+        .success {
+            color: green;
+            font-size: 0.9em;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Tigania East Constituency Bursary Application</h1>
+
+        <!-- Registration Form -->
+        <div id="registration-form">
+            <h2>Register for Bursary Application</h2>
+            <form id="register-form">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="text" name="id_or_birth_cert" placeholder="ID or Birth Certificate Number" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="submit" value="Register">
+            </form>
+            <p>Already have an account? <a href="#" onclick="showLogin()">Login here</a></p>
+        </div>
+
+        <!-- Login Form -->
+        <div id="login-form" class="hidden">
+            <h2>Login for Bursary Application</h2>
+            <form id="login-form">
+                <input type="text" name="id_or_birth_cert" placeholder="ID or Birth Certificate Number" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="submit" value="Login">
+            </form>
+            <p>Don't have an account? <a href="#" onclick="showRegistration()">Register here</a></p>
+        </div>
+
+        <!-- Bursary Application Form -->
+        <div id="bursary-form" class="hidden">
+            <h2>Bursary Application Form</h2>
+            <form id="application-form">
+                <select name="category" required>
+                    <option value="">Select Category</option>
+                    <option value="Secondary School">Secondary School</option>
+                    <option value="College">College</option>
+                    <option value="Other">Other</option>
+                </select>
+                <input type="text" name="institution" placeholder="Name of School/College/University" required>
+                <input type="text" name="admission_number" placeholder="Admission/Registration Number" required>
+                <input type="text" name="course" placeholder="Course of Study">
+                <select name="year_of_study">
+                    <option value="">Select Year of Study</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                <textarea name="reason_for_application" placeholder="Why are you applying for a bursary?" required></textarea>
+                <input type="number" name="amount_requested" placeholder="Amount Requested (Ksh)" required>
+                <input type="submit" value="Submit Application">
+            </form>
+        </div>
+
+
+        <div id="message"></div>
+    </div>
+
+    <script>
+        // Function to show registration form
+        function showRegistration() {
+            document.getElementById('registration-form').classList.remove('hidden');
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('bursary-form').classList.add('hidden');
+        }
+
+        // Function to show login form
+        function showLogin() {
+            document.getElementById('registration-form').classList.add('hidden');
+            document.getElementById('login-form').classList.remove('hidden');
+            document.getElementById('bursary-form').classList.add('hidden');
+        }
+
+        // Function to show bursary application form
+        function showBursaryForm() {
+            document.getElementById('registration-form').classList.add('hidden');
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('bursary-form').classList.remove('hidden');
+        }
+
+        // Function to display messages
+        function showMessage(message, isError = false) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = message;
+            messageDiv.className = isError ? 'error' : 'success';
+        }
+
+        // Event listener for registration form submission
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would normally send an AJAX request to register.php
+            // For this example, we'll just simulate a successful registration
+            showMessage('Registration successful. You can now log in.');
+            showLogin();
+        });
+
+        // Event listener for login form submission
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would normally send an AJAX request to login.php
+            // For this example, we'll just simulate a successful login
+            showMessage('Login successful.');
+            showBursaryForm();
+        });
+
+        // Event listener for bursary application form submission
+        document.getElementById('application-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would normally send an AJAX request to submit_application.php
+            // For this example, we'll just simulate a successful submission
+            showMessage('Application submitted successfully.');
+        });
+    </script>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tigania East Bursary Application</title>
+        <style>
+            /* ... (previous styles remain the same) ... */
+            
+            footer {
+                background-color: #333;
+                color: #fff;
+                text-align: center;
+                padding: 2px 0;
+                position: fixed;
+                bottom: 1;
+                width: 100%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- ... (previous content remains the same) ... -->
+
+        <footer>
+            <p>&copy; <span id="currentYear"></span> Tigania East Constituency. All rights reserved.</p>
+        </footer>
+
+        <script>
+            // ... (previous JavaScript remains the same) ...
+
+            // Set the current year for the copyright notice
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        </script>
+    </body>
+
+    </html>
+</body>
+<footer>
+    <div class="footer-content">
+        <p>&copy; <span id="currentYear"></span> Tigania East Constituency. All rights reserved.</p>
+        <p>National Government Constituencies Development Fund (NG-CDF)</p>
+        <p>Contact:+254712354674/ +254746908647</p>
+        <p>Address:P.O BOX 000- 0100</p>
+    </div>
+</footer>
+
+</html>
